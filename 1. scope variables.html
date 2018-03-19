@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>scope variables</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// global scope
+		var a = 1;
+
+		//ex. 1 [A globally-scoped variable]
+		function one() {
+		  alert('global scope ' + a); // alerts '1'
+		}
+
+		//ex. 2 [Local scope]
+		//a
+		function two(a) {
+		  // local scope
+		  alert(a); // alerts the given argument, not the global value of '1'
+		}
+
+		// local scope again
+		//b 
+		function three() {
+		  var a = 3;
+		  alert(a); // alerts '3'
+		}
+
+		//ex.  3 [Intermediate: No such thing as block scope in JavaScript (ES5; ES6 introduces let)]
+		//a
+		function four() {
+		  if (true) {
+		    var a = 4;
+		  }
+
+		  alert(a); // alerts '4', not the global value of '1'
+		}
+
+		//b
+		function five() {
+		  if (true) {
+		    let a = 4;
+		    alert(a); // alerts '4'
+		  }
+
+		  alert(a); // alerts '1' because the 'let' keyword uses block scoping
+		}
+
+		//ex. 4 [Intermediate: Object properties]
+		function six() {
+		  this.a = 6;
+		}
+
+		//alert(new six().a); // alerts '6'
+
+		//ex. 5 [Advance: Closure]
+		var seven = (function() {
+		  var a = 7;
+
+		  return function() {
+		    // JavaScript "closure" means I have access to 'a' in here,
+		    // because it is defined in the function in which I was defined.
+		    alert(a); // alerts '6'
+		  };
+		})();
+
+
+		//ex. 6 [Advanced: Prototype-based scope resolution]
+		var a = 1;
+
+		function eight() {
+		  this.a = 7;
+		}
+
+		// [object].prototype.property loses to
+		// [object].property in the lookup chain. For example...
+
+		// Won't get reached, because 'a' is set in the constructor above.
+		eight.prototype.a = -1;
+
+		// Will get reached, even though 'b' is NOT set in the constructor.
+		eight.prototype.b = 8;
+
+		//alert(new eight().a); // alerts '7'
+		//alert(new eight().b); // alerts '8'
+
+		//initialize functions
+		//seven();
+
+
+		//ex. 7 [Global+Local: An extra complex Case]
+		var x = 5;
+
+		(function () {
+		    console.log(x);
+		    var x = 10;
+		    console.log(x); 
+		})();
+		//This will print out undefined and 10 rather than 5 and 10 since JavaScript always moves variable declarations (not initializations) to the top of the scope, making the code equivalent to:
+		var x = 5;
+		(function () {
+		    var x;
+		    console.log(x);
+		    x = 10;
+		    console.log(x); 
+		})();
+
+		//ex. 8 [Catch clause-scoped variable]
+		var e = 5;
+		console.log(e);
+		try {
+		    throw 6;
+		} catch (e) {
+		    console.log(e);
+		}
+		console.log(e);
+		// This will print out 5, 6, 5. Inside the catch clause e shadows global and local variables. But this special scope is only for the caught variable. If you write var f; inside the catch clause, then it's exactly the same as if you had defined it before or after the try-catch block.
+	</script>
+</body>
+</html>
