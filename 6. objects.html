@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>objects</title>
+</head>
+<body>
+	<script type="text/javascript">
+	//object literal	
+	var person = {
+		firstName: 'Robert',
+		lastname: 'Haydn',
+		age: 25,
+		children: ['Mark', 'Christian', 'Chloe'], // array
+		address: { //another object
+			street: '143 something st.',
+			city: 'Boston',
+			state: 'MA'
+		}
+	}
+
+	//console.log(person.address.city);
+
+	//console.log(person.firstName); //normal object calls
+	//console.log(person.age);
+	//console.log(person.children);
+	//console.log(person.children[1]);
+
+	for(i = 0; i<person.children.length; i++) {
+		//console.log(person.children[i]);
+		//var x = i;
+	}
+	//console.log(x);
+
+	//object with function
+	var hero = {
+		name: 'Vengeful',
+		lastname: 'Spirit',
+		item: {
+			item1: 'monkey king bar',
+			item2: 'boots of speed'
+		},
+		score: function(b=this.lastname) {
+			var x = 12;
+			return b;
+			//return this.name + ' ' + this.lastname;
+		}
+	}
+
+	//alert(hero.score());
+
+
+	//object constructor
+	var apple = new Object();
+	apple.color = 'red';
+	apple.shape = 'round';
+	apple.describe = function() {
+		return 'Color of an apple is '+this.color+' and the shape is '+this.shape;
+	}
+
+	//console.log(apple.describe());
+
+	//constructor pattern
+	function Fruit(name, color, shape) {
+		this.name = name;
+		this.color = color;
+		this.shape = shape;
+		this.describe = function() {
+			return 'Name: '+this.name+' Color: '+this.color+' Shape: '+this.shape;
+		}
+	}
+
+	var apple = new Fruit('apple', 'red', 'round');
+	var melon = new Fruit('melon', 'green', 'round');
+
+	//alert(JSON.stringify(apple, null, 4));
+	//console.log(melon.shape);
+	//alert(apple.describe());
+
+	//arrays of object
+	var users = [
+		{
+			name: 'Hayley Williams',
+			age: '32'
+		},
+		{
+			name: 'Taylor Swift',
+			age: '28'
+		},
+		{
+			name: 'Ed Sheeran',
+			age: '25'
+		}
+	];
+
+	console.log(users[0].name);
+
+	</script>
+</body>
+</html>

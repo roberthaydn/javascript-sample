@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>arrays</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//ex. 1
+		//set an array value
+		var colors = ['red', 'green', 'blue'];
+
+		//alert(colors); //prints out everything from the array colors
+		//alert(colors[2]) //specify 1 value. prints out blue
+
+		//ex. 2
+		//array object
+		var colorsA = new Array('red', 'yellow', 'orange');
+		colorsA[3] = 'blue';
+
+		//alert(colorsA);
+		//alert(colorsA[1]); //prints out yellow
+
+		//ex. 3
+		colorsA.push('purple');
+
+		//alert(colorsA);
+
+		//ex. 4
+		var numbers = [11, 17, 25, 143, 'three', 1, 8];
+		//alert(numbers[0] + numbers[1]);
+		alert(numbers.length); //prints out how many values are in the array
+		alert(numbers.sort()); //sort by value
+		alert(numbers.reverse());
+
+	</script>
+</body>
+</html>

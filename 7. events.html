@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Events</title>
+</head>
+<body>
+	<h1 id="txt">Please Change this text!</h1>
+	<h3 id="time"></h3>
+	<button onClick="doClick()">Click Me!</button>
+	<button onClick="anotherClick(this)">Another CLick!</button>
+	<button onCLick="changeText()">Change Text!</button>
+	<button onClick="showDate()">Show Date!</button>
+	<script type="text/javascript">
+		function doClick() {
+			alert('You Clicked!');
+		}
+
+		function anotherClick(c) {
+			c.innerHTML = 'You clicked!';
+		}
+
+		function changeText() {
+			var txt = document.getElementById('txt');
+			txt.innerHTML = 'You ClickeD~~!'
+		}
+
+		function showDate() {
+			var time = document.getElementById('time');
+			time.innerHTML = Date();
+		}
+
+		//other events
+		//onmouseout
+		//onmouseover
+
+
+	</script>
+</body>
+</html>
