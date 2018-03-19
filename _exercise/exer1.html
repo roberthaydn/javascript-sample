@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>exer1</title>
+</head>
+<body>
+	<h2>Dota Heroes</h2>
+	<p id="hero"></p>
+
+</body>
+	<script type="text/javascript">
+		function heroes() {
+			var hero = document.getElementById('hero');
+			var dotaHeroes = (function() {
+				var heroes = [
+					{
+						heroName: 'Abaddon',
+						statStr: 25,
+						statAgi: 10,
+						statInt: 5
+					},
+					{
+						heroName: 'Axe',
+						statStr: 22,
+						statAgi: 8,
+						statInt: 14
+					}
+				];
+				return (function() {		
+					for(h=0; h<heroes.length; h++) {
+						console.log('Name: ' + heroes[h].heroName + ' Str: ' + heroes[h].statStr);
+					}
+				});
+			})();
+
+			
+			dotaHeroes();
+		}
+
+
+		heroes();
+		
+
+
+	</script>
+</html>
