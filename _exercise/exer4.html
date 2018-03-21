@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>json practice</title>
+	<style type="text/css">
+		th {
+			background-color:cyan;
+		}
+		th, td {
+			border:1px solid gray;
+			padding:10px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Retrive a data from JSON</h1>
+
+	<div id="data_element">
+
+	</div>
+
+	<script type="text/javascript">
+		//http://www.dofactory.com/sql/sample-database
+
+		var data =	[
+						{
+							"id": "0001",
+							"type": "donut",
+							"name": "Cake",
+							"ppu": 0.55,
+							"batters":
+								{
+									"batter":
+										[
+											{ "id": "1001", "type": "Regular" },
+											{ "id": "1002", "type": "Chocolate" },
+											{ "id": "1003", "type": "Blueberry" },
+											{ "id": "1004", "type": "Devil's Food" }
+										]
+								},
+							"topping":
+								[
+									{ "id": "5001", "type": "None" },
+									{ "id": "5002", "type": "Glazed" },
+									{ "id": "5005", "type": "Sugar" },
+									{ "id": "5007", "type": "Powdered Sugar" },
+									{ "id": "5006", "type": "Chocolate with Sprinkles" },
+									{ "id": "5003", "type": "Chocolate" },
+									{ "id": "5004", "type": "Maple" }
+								]
+						},
+						{
+							"id": "0002",
+							"type": "donut",
+							"name": "Raised",
+							"ppu": 0.55,
+							"batters":
+								{
+									"batter":
+										[
+											{ "id": "1001", "type": "Regular" }
+										]
+								},
+							"topping":
+								[
+									{ "id": "5001", "type": "None" },
+									{ "id": "5002", "type": "Glazed" },
+									{ "id": "5005", "type": "Sugar" },
+									{ "id": "5003", "type": "Chocolate" },
+									{ "id": "5004", "type": "Maple" }
+								]
+						},
+						{
+							"id": "0003",
+							"type": "donut",
+							"name": "Old Fashioned",
+							"ppu": 0.55,
+							"batters":
+								{
+									"batter":
+										[
+											{ "id": "1001", "type": "Regular" },
+											{ "id": "1002", "type": "Chocolate" }
+										]
+								},
+							"topping":
+								[
+									{ "id": "5001", "type": "None" },
+									{ "id": "5002", "type": "Glazed" },
+									{ "id": "5003", "type": "Chocolate" },
+									{ "id": "5004", "type": "Maple" }
+								]
+						}
+					];
+
+		var data_element = document.getElementById('data_element');
+		
+		//data_element.innerHTML = data[0].type;	
+		var htmlString = "";
+
+		for(var i = 0; i<data.length; i++) {
+			//data [id,type,namme,ppu]
+			var dataArr = [data[i].id, data[i].type, data[i].name, data[i].ppu];
+			
+			//data batters
+		
+			htmlString += "";
+			htmlString += "<p><b>Id:</b> " + dataArr[0] + "</p>";
+			htmlString += "<p><b>Type:</b> " + dataArr[1] + "</p>";
+			htmlString += "<p><b>Name:</b> " + dataArr[2] + "</p>";
+			htmlString += "<p><b>Ppu:</b> " + dataArr[3] + "</p>";
+
+			htmlString += "<hr>";
+
+			htmlString += "<p><b>Batters</b></p>";
+			htmlString += "<p><b>Id:</b>";
+
+			for(var ii = 0; ii<data[i].batters.batter.length; ii++) {
+				htmlString += " " + data[i].batters.batter[ii].id + "";
+			}
+			htmlString += "</p>";
+
+			htmlString += "<p><b>Type:</b>";
+			for(var ii = 0; ii<data[i].batters.batter.length; ii++) {
+				htmlString += " " + data[i].batters.batter[ii].type + " ";
+			}
+			htmlString += "</p>";
+
+			htmlString += "<hr>";
+
+			htmlString += "<p><b>Topping:</b> " + dataArr[0] + "</p>";
+			htmlString += "<p><b>Id: </b>";
+			for(var jj = 0; jj<data[i].topping.length; jj++) {
+				htmlString += "" + data[i].topping[jj].id + " ";	
+			}
+			htmlString += "</p>";
+
+			htmlString += "<p><b>Type: </b>";
+			for(var jj = 0; jj<data[i].topping.length; jj++) {
+				htmlString += "" + data[i].topping[jj].type + " ";
+			}
+			htmlString += "</p>";
+
+			htmlString += "<hr><hr><hr><hr><hr>";
+		}
+
+		data_element.insertAdjacentHTML('beforeend', htmlString);
+
+	</script>
+</body>
+</html>
