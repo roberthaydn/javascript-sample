@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <script type="text/javaScript">
+    function Factory() {
+
+      var pet = new Animal();
+
+      this.animal = function() {
+        console.log('Shark');
+        console.log(pet.animal);
+      }
+    }
+
+    function Animal() {
+      this.animal = 'dog';
+    }
+
+    function run() {
+      var pet = new Factory();
+      pet.animal()
+    }
+
+    run();
+
+
+
+
+
+
+
+
+
+    /*function Vegeta() {
+      this.strength = function() {
+        return 1234323;
+      }
+
+      this.substr = function() {
+        return this.strength()
+      }
+    }
+
+    function run() {
+      var vegeta = new Vegeta();
+      console.log(vegeta.substr());
+    }
+
+    run();*/
+  </script>
+
+</body>
+</html>

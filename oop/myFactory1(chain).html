@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+    body {
+      font-family:roboto;
+    }
+    .person, .pet {
+      padding:15px;
+      margin:5px;
+      line-height:150%;
+      font-size:16px;
+    }
+
+    .person {
+      background-color:#474787;
+      color:#ffffff;
+    }
+    .pet {
+      background-color:#b33939;
+      color:#ffffff;
+    }
+    .btn {
+      padding:16px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap-btn">
+    <button id="btnAbility" class="btn"> Ability </button>
+  </div>
+
+  <div class="person">
+    <div id="personName"></div>
+    <div id="personAbility"></div>
+  </div>
+
+  <div class="pet">
+  <div id="petName"></div>
+  <div id="petAbility"></div>
+  </div>
+
+  <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+  <script type="text/javascript">
+    var objName = {
+      person : 'Miguel',
+      pet : 'Dante'
+    };
+
+    var objAction = {
+      punch : ['Punch: strong', 'Punch: fast', 'Punch: weak'],
+      kick : ['Kick: strong', 'Kick: weak'],
+      jump : 'Jump: high',
+      run : {
+        fast : 'Run: fast',
+        slow : 'Run: slow'
+      },
+      otherAction : ''
+    };
+
+    var objElement = {
+      //names
+      personName : $('#personName'),
+      petName : $('#petName'),
+
+      //output ability
+      personAbility : $('#personAbility'),
+      petAbility : $('#petAbility'),
+
+      //btn ability
+      btnAbility : $('#btnAbility'),
+    }
+
+    $(document).ready(function()
+    {
+      var person = new __Person();
+      var pet = new __Pet();
+
+      //
+      objElement.personName.html(person.personName);
+      objElement.petName.html(pet.petName);
+
+      //
+      objElement.btnAbility.click(function()
+      {
+        //method chaining
+        person.punch().kick().jump().run().other('swim');
+        pet.punch().kick().jump().run().other('sit');
+      });
+    });
+
+    function __Person() {
+
+      this.personName = objName.person;
+
+      this.punch = function() {
+        var htmlStr = '<hr> He can... <br>';
+        htmlStr += objAction.punch[0] + '<br>';
+        htmlStr += objAction.punch[1] + '<br>';
+        htmlStr += objAction.punch[2] + '<br>';
+
+        objElement.personAbility.html(htmlStr);
+
+        console.log(objAction.punch[0]);
+        console.log(objAction.punch[1]);
+        console.log(objAction.punch[2]);
+        return this;
+      }
+
+      this.kick = function() {
+        var htmlStr = '';
+        htmlStr += objAction.kick[0] + '<br>';
+        htmlStr += objAction.kick[1] + '<br>';
+
+        objElement.personAbility.append(htmlStr);
+
+        console.log(objAction.kick[0]);
+        console.log(objAction.kick[1]);
+        return this;
+      }
+
+      this.jump = function() {
+        var htmlStr = '';
+        htmlStr += objAction.jump + '<br>';
+
+        objElement.personAbility.append(htmlStr);
+        console.log(objAction.jump);
+        return this;
+      }
+
+      this.run = function() {
+        var htmlStr = '';
+        htmlStr += objAction.run.fast + '<br>';
+        htmlStr += objAction.run.slow + '<br>';
+
+        objElement.personAbility.append(htmlStr);
+
+        console.log(objAction.run.fast)
+        console.log(objAction.run.slow)
+        return this;
+      }
+
+      this.other = function(param) {
+        var other = objAction.otherAction = param;
+        var htmlStr = '';
+        htmlStr += objAction.otherAction + '<br>';
+
+        objElement.personAbility.append('Other: ' + htmlStr);
+
+        console.log('Other: ' + other)
+        return this;
+      }
+    }
+
+    function __Pet() {
+
+      this.petName = objName.pet;
+
+      this.punch = function() {
+        var htmlStr = '<hr> He can... <br>';
+        htmlStr += objAction.punch[2] + '<br>';
+        objElement.petAbility.html(htmlStr);
+        console.log(objAction.punch[2]);
+        return this;
+      }
+
+      this.kick = function() {
+        var htmlStr = '';
+        htmlStr += objAction.kick[1] + '<br>';
+        objElement.petAbility.append(htmlStr);
+        console.log(objAction.kick[1]);
+        return this;
+      }
+
+      this.jump = function() {
+        var htmlStr = '';
+        htmlStr += objAction.jump + '<br>';
+        objElement.petAbility.append(htmlStr);
+        console.log(objAction.jump);
+        return this;
+      }
+
+      this.run = function() {
+        var htmlStr = '';
+        htmlStr += objAction.run.fast + '<br>';
+        htmlStr += objAction.run.slow + '<br>';
+        objElement.petAbility.append(htmlStr);
+        console.log(objAction.run.fast)
+        console.log(objAction.run.slow)
+        return this;
+      }
+
+      this.other = function(param) {
+        var other = objAction.otherAction = param;
+        var htmlStr = '';
+        htmlStr += other + '<br>';
+        objElement.petAbility.append('Other: ' + htmlStr);
+        console.log('Other: ' + other)
+        return this;
+      }
+    }
+  </script>
+</body>
+</html>

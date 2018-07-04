@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    function MethodSample() {
+
+      //public property inside a method
+      this.x = {
+        y : 'public property'
+      };
+
+      //private property inside a method
+      var c = {
+        s : 'private property'
+      };
+
+      //public method
+      this.public = function () {
+        return 'public method with ' + c.s;
+      }
+    }
+
+    var method = new MethodSample();
+
+    console.log(method.x.y);
+    console.log(method.public());
+
+  </script>
+</body>
+</html>

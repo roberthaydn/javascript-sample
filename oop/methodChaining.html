@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+
+  //sample 1
+  //method chaining
+  var PersonInfo = {
+
+      id : "094842",
+      myAge : 24,
+
+      firstName: function (param) {
+        console.log(param)
+        return this;
+      },
+
+      lastName: function (param) {
+        console.log(param)
+        return this;
+      },
+
+      age: function () {
+        console.log(this.myAge)
+        return this;
+      }
+  };
+
+  console.log(PersonInfo.id);
+  PersonInfo.firstName('Ed').lastName('Sheeran').age();
+
+  console.log('---------------------------------------------------------------');
+
+  //sample 2
+  //method chaining using prototype
+  function Temperature() {
+    this.neptune = 'Neptune: Very Cold!';
+    this.mars = function() {
+      /*console.log('cold');
+      return this;*/
+      var temperature = 'Mars: cold';
+      /* closure */
+      return(function() {
+        return console.log(temperature);
+      })();
+
+    }
+  }
+
+  Temperature.prototype.venus = function(param) {
+    console.log('Venus: ' + param);
+    return this;
+  }
+
+  Temperature.prototype.earth = function() {
+    console.log('Earth: hot and cold!');
+    return this;
+  }
+
+  Temperature.prototype.pluto = function() {
+    console.log('Pluto: very cold!');
+    return this;
+  }
+
+  var planetTemperature = new Temperature();
+  console.log('Planets\' Temperature');
+  planetTemperature.venus('Extremely Hot!!');
+  console.log(planetTemperature.neptune);
+  planetTemperature.mars();
+
+  </script>
+
+
+</body>
+</html>

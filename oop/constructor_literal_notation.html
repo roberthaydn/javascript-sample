@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <button id="button" class="btn btn-primary">CLICK</button>
+
+  <div id="result"></div>
+
+  <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+
+      //instantiate object
+      var f = new Animals();
+      console.log(f.fish);
+      console.log(f.mammal);
+      console.log(f.bird);
+      console.log(f.insect);
+
+      $('#button').on('click', btnShow);
+
+      //literal notation
+      var dotaHero = {
+        hero1 : 'Destroyer',
+        hero2 : 'Warklock'
+      };
+
+      console.log(dotaHero.hero2);
+
+    });
+
+    function btnShow() {
+      var objAni = new Animals();
+
+      var fish   = objAni.fish,
+          mammal = objAni.mammal,
+          bird   = objAni.bird,
+          insect = objAni.insect;
+
+      var dotaHero = {
+        hero1 : objAni.bird
+      };
+
+      $('#result').html('<br>Animals: ' + fish + ',' + mammal + ',' + bird + ',' + insect);
+
+    }
+
+    //constructor
+    function Animals() {
+      this.fish = 'whale';
+      this.mammal = 'cat';
+      this.bird = 'chicken';
+
+      this.amphibian = function(wew) {
+        var a = wew;
+        return a;
+      };
+    };
+
+    //adding new method
+    Animals.prototype.insect = 'spider';
+
+    var wew = new Animals();
+    console.log(wew.amphibian('wew'))
+
+
+  </script>
+</body>
+</html>

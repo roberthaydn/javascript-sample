@@ -27,17 +27,19 @@
 						statInt: 14
 					}
 				];
+
+			var addStatStr = 0;	
 				return (function() {		
 					for(h=0; h<heroes.length; h++) {
 						console.log('Name: ' + heroes[h].heroName + ' Str: ' + heroes[h].statStr);
+						addStatStr += heroes[h].statStr;
 					}
+					console.log('statStr: ' + addStatStr);
 				});
 			})();
 
-			
 			dotaHeroes();
 		}
-
 
 		heroes();
 		

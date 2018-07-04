@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+    body {
+      font-family:roboto;
+    }
+    .person, .pet {
+      padding:15px;
+      margin:5px;
+      line-height:150%;
+      font-size:16px;
+    }
+
+    .person {
+      background-color:#474787;
+      color:#ffffff;
+    }
+    .pet {
+      background-color:#b33939;
+      color:#ffffff;
+    }
+    .btn {
+      padding:16px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap-btn">
+    <button id="btnPunch" class="btn"> Punch </button>
+    <button id="btnKick" class="btn"> Kick </button>
+    <button id="btnJump" class="btn"> Jump </button>
+    <button id="btnRun" class="btn"> Run </button>
+    <button id="btnOther" class="btn"> Other </button>
+  </div>
+
+  <div class="person">
+    <div id="personName"></div>
+    <div id="personAbility"></div>
+  </div>
+
+  <div class="pet">
+  <div id="petName"></div>
+  <div id="petAbility"></div>
+  </div>
+
+  <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+  <script type="text/javascript">
+
+    var objName = {
+      person : 'Miguel',
+      pet : 'Dante'
+    };
+
+    var objAction = {
+      punch : ['Punch: strong', 'Punch: fast', 'Punch: weak'],
+      kick : ['Kick: strong', 'Kick: weak'],
+      jump : 'Jump: high',
+      run : {
+        fast : 'Run: fast',
+        slow : 'Run: slow'
+      },
+      otherAction : ''
+    };
+
+    var objElement = {
+      //names
+      personName : $('#personName'),
+      petName : $('#petName'),
+
+      //output ability
+      personAbility : $('#personAbility'),
+      petAbility : $('#petAbility'),
+
+      //btn ability
+      btnPunch : $('#btnPunch'),
+      btnKick : $('#btnKick'),
+      btnJump : $('#btnJump'),
+      btnRun : $('#btnRun'),
+      btnOther : $('#btnOther')
+    }
+
+    $(document).ready(function()
+    {
+      var person = new Person();
+      var pet = new Pet();
+
+      //
+      objElement.personName.html(person.personName);
+      objElement.petName.html(pet.petName);
+
+      //
+      objElement.btnPunch.click(function()
+      {
+        person.punch();
+        pet.punch();
+      });
+
+      objElement.btnKick.click(function() {
+        person.kick();
+        pet.kick();
+      });
+
+      //
+      objElement.btnJump.click(function() {
+        person.jump();
+        pet.jump();
+      });
+
+      //
+      objElement.btnRun.click(function() {
+        person.run();
+        pet.run();
+      });
+
+      //
+      objElement.btnOther.click(function() {
+        person.other('walk slowly');
+        pet.other('swim');
+      });
+    });
+
+    function Person() {
+
+      this.personName = objName.person;
+
+      //private method
+      var hidden = function() {
+        //console.log('Fly: fly for 5mins!');
+        return '<br>Fly: fly for 5mins!';
+      }
+
+      this.punch = function() {
+        var htmlStr = '<hr> He can...<br>';
+        htmlStr += objAction.punch[0] + '<br>';
+        htmlStr += objAction.punch[1] + '<br>';
+        htmlStr += objAction.punch[2];
+
+        return objElement.personAbility.html(htmlStr);
+      }
+
+      this.kick = function() {
+        var htmlStr = '<hr> He can...<br>';
+        htmlStr += objAction.kick[0] + '<br>';
+        htmlStr += objAction.kick[1];
+
+        return objElement.personAbility.html(htmlStr);
+      }
+
+      this.jump = function() {
+        var htmlStr = '<hr> He can...<br>';
+        htmlStr += objAction.jump;
+
+        return objElement.personAbility.html(htmlStr);
+      }
+
+      this.run = function() {
+        var htmlStr = '<hr> He can...<br>';
+        htmlStr += objAction.run.fast + '<br>';
+        htmlStr += objAction.run.slow;
+
+        return objElement.personAbility.html(htmlStr);
+      }
+
+      this.other = function(param) {
+        var other = objAction.otherAction = param;
+        var htmlStr = '<hr> He can...<br>';
+        htmlStr += 'Other: ' + other;
+        htmlStr += hidden();
+
+        return objElement.personAbility.html(htmlStr);
+      }
+    }
+
+    function Pet() {
+
+      this.petName = objName.pet;
+
+      this.punch = function() {
+        var htmlStr = '<hr> He can...<br>';
+        htmlStr += objAction.punch[1] + '<br>';
+        htmlStr += objAction.punch[2];
+
+        return objElement.petAbility.html(htmlStr);
+      }
+
+      this.kick = function() {
+        var htmlStr = '<hr> He can...<br>';
+        htmlStr += objAction.kick[1] + '<br>';
+
+        return objElement.petAbility.html(htmlStr);
+      }
+
+      this.jump = function() {
+        var htmlStr = '<hr> He can...<br>';
+        htmlStr += objAction.jump + '<br>';
+
+        return objElement.petAbility.html(htmlStr);
+      }
+
+      this.run = function() {
+        var htmlStr = '<hr> He can...<br>';
+        htmlStr += objAction.run.fast + '<br>';
+        htmlStr += objAction.run.slow + '<br>';
+
+        return objElement.petAbility.html(htmlStr);
+      }
+
+      this.other = function(param) {
+        var other = objAction.otherAction = param;
+        var htmlStr = '<hr> He can...<br>';
+        htmlStr += 'Other: ' + other;
+
+        return objElement.petAbility.html(htmlStr);
+      }
+    }
+
+  </script>
+</body>
+</html>

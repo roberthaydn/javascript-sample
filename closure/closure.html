@@ -1,0 +1,25 @@
+<!-- http://javascriptissexy.com/understand-javascript-closures-with-ease/ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+  function showName (firstName, lastName) {
+    var nameIntro = "Your name is ";
+    // this inner function has access to the outer function's variables, including the parameter
+    function makeFullName () {
+      return nameIntro + firstName + " " + lastName;
+    }
+    return makeFullName ();
+  }
+
+  alert(showName ("Michael", "Jackson")); // Your name is Michael Jackson
+
+  </script>
+</body>
+</html>
